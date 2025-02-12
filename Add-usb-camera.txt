@@ -1,0 +1,20 @@
+in ubuntu webcam
+ll /dev/video0
+ll /dev/video0
+
+Stream pre-encoded video from a USB camera on Ubuntu
+
+gst-launch-1.0 v4l2src do-timestamp=TRUE device=/dev/video0 ! h264parse ! video/x-h264,stream-format=avc,alignment=au ! kvssink stream-name="live-webcam-ubuntu" storage-size=512 access-key="YourAccessKey" secret-key="YourSecretKey" aws-region="YourAWSRegion"
+-------------------------------------------------
+
+
+cd ~/amazon-kinesis-video-streams-producer-sdk-cpp/build
+while true; do ./kvs_gstreamer_sample kvs-workshop-stream ~/sample.mp4 && sleep 10s; done
+
+
+------------------------------------------------
+
+export AWS_DEFAULT_REGION="us-east-1"
+export AWS_ACCESS_KEY_ID=""
+export AWS_SECRET_ACCESS_KEY=""
+export AWS_SESSION_TOKEN=""
